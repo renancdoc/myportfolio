@@ -1,18 +1,33 @@
 import styled from "@emotion/styled"
+import type { ReactNode } from "react"
 
-const StyledButton = () => {
+interface StyledButtonPropos{
+  children: ReactNode
+}
 
-    const StyledButton = styled("button")(({theme})=> ({
+const StyledButton: React.FC<StyledButtonPropos> = ({children}) => {
+
+    const StyledButton = styled("button")(({theme}) => ({
         backgroundColor: "transparent",
+        border: `1px solid ${theme.palette.primary.contrastText}`,
         borderRadius: "3px",
         padding: "5px 15px",
         width:"100%",
-        border: `{1px solid ${theme.palette.primary.contrastText}`
+        color: theme.palette.primary.contrastText,
+        display:"inline-flex",
+        alignItems:"center",
+        justifyContent:"center",
+        gap:"10px",
+        '&:hover': {
+            backgroundColor: theme.palette.secondary.main,
+            border: "none",
+        }
+
   }))
 
   return (
     <>
-      <StyledButton>Texto</StyledButton>
+      <StyledButton>{children}</StyledButton>
     </>
   )
 }
